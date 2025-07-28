@@ -37,7 +37,7 @@ pnpm run build
 ## Live Demo
 
 [View the deployed application](https://unit-master.vercel.app)  
-https://unit-converter-3hbcna10n-cornil-devils-projects.vercel.app/
+https://unit-converter-ten-delta.vercel.app/
 
 ## Author
 
