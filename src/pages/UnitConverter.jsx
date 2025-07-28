@@ -1,65 +1,113 @@
-import React, { useState, useEffect } from 'react';
-import InputField from '../components/InputField';
-import UnitDropdown from '../components/UnitDropdown';
-import ResultBox from '../components/ResultBox';
-import { units, convert } from '../utils/conversionUtils';
+import React, { useState } from "react";
 
 const UnitConverter = () => {
-  const categories = [
-    { name: "📏 Length", value: "length" },
-    { name: "⚖️ Weight", value: "weight" },
-    { name: "🔥 Temperature", value: "temperature" },
-    { name: "💸 Currency", value: "currency" },
-    { name: "💽 Data", value: "data" },
-    { name: "⏰ Time", value: "time" }
-  ];
+  const [category, setCategory] = useState("length");
+  const [fromUnit, setFromUnit] = useState("");
+  const [toUnit, setToUnit] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [convertedValue, setConvertedValue] = useState("");
 
-  const [category, setCategory] = useState('length');
-  const [input, setInput] = useState('');
-  const [from, setFrom] = useState(units['length'][0]);
-  const [to, setTo] = useState(units['length'][1]);
-  const [result, setResult] = useState('');
+  const units = {
+    length: ["Meter", "Kilometer", "Mile", "Yard"],
+    weight: ["Gram", "Kilogram", "Pound", "Ounce"],
+    temperature: ["Celsius", "Fahrenheit", "Kelvin"],
+    currency: ["USD", "CAD", "INR", "EUR"],
+    data: ["Byte", "KB", "MB", "GB"],
+    time: ["Second", "Minute", "Hour", "Day"],
+  };
 
-  useEffect(() => {
-    if (!input || isNaN(input)) {
-      setResult('');
+  const convert = () => {
+    const value = parseFloat(inputValue);
+    if (isNaN(value) || !fromUnit || !toUnit || fromUnit === toUnit) {
+      setConvertedValue("");
       return;
     }
 
-    const res = convert(category, input, from, to);
-    setResult(!isNaN(res) ? parseFloat(res).toFixed(3) : '');
-  }, [category, input, from, to]);
+    // Sample conversion logic (can be expanded)
+    let result = value;
 
-  const handleCategoryChange = (cat) => {
-    setCategory(cat);
-    setFrom(units[cat][0]);
-    setTo(units[cat][1]);
-    setInput('');
-    setResult('');
+    if (category === "length") {
+      const conversionRates = {
+        Meter: 1,
+        Kilometer: 0.001,
+        Mile: 0.000621371,
+        Yard: 1.09361,
+      };
+      result = (value / conversionRates[fromUnit]) * conversionRates[toUnit];
+    }
+
+    setConvertedValue(result.toFixed(4));
   };
 
   return (
-    <div className="space-y-4">
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold mb-4">Unit Converter</h1>
+
       <select
+        className="w-full mb-4 p-2 border"
         value={category}
-        onChange={(e) => handleCategoryChange(e.target.value)}
-        className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white shadow"
+        onChange={(e) => {
+          setCategory(e.target.value);
+          setFromUnit("");
+          setToUnit("");
+          setConvertedValue("");
+        }}
       >
-        {categories.map((cat) => (
-          <option key={cat.value} value={cat.value}>
-            {cat.name}
+        {Object.keys(units).map((cat) => (
+          <option key={cat} value={cat}>
+            {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </option>
         ))}
       </select>
 
-      <InputField value={input} onChange={setInput} />
+      <div className="flex gap-2 mb-4">
+        <select
+          className="flex-1 p-2 border"
+          value={fromUnit}
+          onChange={(e) => setFromUnit(e.target.value)}
+        >
+          <option value="">From</option>
+          {units[category].map((unit) => (
+            <option key={unit} value={unit}>
+              {unit}
+            </option>
+          ))}
+        </select>
 
-      <div className="flex gap-2">
-        <UnitDropdown options={units[category]} selected={from} onChange={setFrom} />
-        <UnitDropdown options={units[category]} selected={to} onChange={setTo} />
+        <select
+          className="flex-1 p-2 border"
+          value={toUnit}
+          onChange={(e) => setToUnit(e.target.value)}
+        >
+          <option value="">To</option>
+          {units[category].map((unit) => (
+            <option key={unit} value={unit}>
+              {unit}
+            </option>
+          ))}
+        </select>
       </div>
 
-      {result && <ResultBox from={from} to={to} input={input} result={result} />}
+      <input
+        type="number"
+        className="w-full p-2 border mb-4"
+        placeholder="Enter value"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+
+      <button
+        className="w-full bg-blue-500 text-white p-2 rounded"
+        onClick={convert}
+      >
+        Convert
+      </button>
+
+      {convertedValue && (
+        <p className="mt-4 text-center text-xl font-semibold">
+          Result: {convertedValue}
+        </p>
+      )}
     </div>
   );
 };
