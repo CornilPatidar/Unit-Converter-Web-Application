@@ -6,19 +6,19 @@ import { units, convert } from '../utils/conversionUtils';
 
 const UnitConverter = () => {
   const categories = [
-  { name: "📏 Length", value: "length" },
-  { name: "⚖️ Weight", value: "weight" },
-  { name: "🔥 Temperature", value: "temperature" },
-  { name: "💸 Currency", value: "currency" },
-  { name: "💽 Data", value: "data" },
-  { name: "⏰ Time", value: "time" }
-];
+    { name: "📏 Length", value: "length" },
+    { name: "⚖️ Weight", value: "weight" },
+    { name: "🔥 Temperature", value: "temperature" },
+    { name: "💸 Currency", value: "currency" },
+    { name: "💽 Data", value: "data" },
+    { name: "⏰ Time", value: "time" }
+  ];
 
- const [input, setInput] = useState('');
-const [category, setCategory] = useState('length'); 
-const [from, setFrom] = useState(units['Length'][0]);
-const [to, setTo] = useState(units['Length'][1]);
-const [result, setResult] = useState('');
+  const [input, setInput] = useState('');
+  const [category, setCategory] = useState('length');
+  const [from, setFrom] = useState(units['length'][0]);
+  const [to, setTo] = useState(units['length'][1]);
+  const [result, setResult] = useState('');
 
   useEffect(() => {
     if (!input || isNaN(input)) {
@@ -45,16 +45,16 @@ const [result, setResult] = useState('');
   return (
     <div className="space-y-4">
       <select
-  value={category}
-  onChange={(e) => handleCategoryChange(e.target.value)}
-  className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white shadow"
->
-  {categories.map((cat) => (
-    <option key={cat.value} value={cat.value}>
-      {cat.name}
-    </option>
-  ))}
-</select>
+        value={category}
+        onChange={(e) => handleCategoryChange(e.target.value)}
+        className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white shadow"
+      >
+        {categories.map((cat) => (
+          <option key={cat.value} value={cat.value}>
+            {cat.name}
+          </option>
+        ))}
+      </select>
 
       <InputField value={input} onChange={setInput} />
 
