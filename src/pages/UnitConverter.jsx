@@ -14,8 +14,8 @@ const UnitConverter = () => {
     { name: "⏰ Time", value: "time" }
   ];
 
-  const [input, setInput] = useState('');
   const [category, setCategory] = useState('length');
+  const [input, setInput] = useState('');
   const [from, setFrom] = useState(units['length'][0]);
   const [to, setTo] = useState(units['length'][1]);
   const [result, setResult] = useState('');
@@ -27,11 +27,7 @@ const UnitConverter = () => {
     }
 
     const res = convert(category, input, from, to);
-    if (!isNaN(res)) {
-      setResult(parseFloat(res).toFixed(3));
-    } else {
-      setResult('');
-    }
+    setResult(!isNaN(res) ? parseFloat(res).toFixed(3) : '');
   }, [category, input, from, to]);
 
   const handleCategoryChange = (cat) => {
