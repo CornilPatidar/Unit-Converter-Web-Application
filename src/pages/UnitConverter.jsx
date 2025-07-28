@@ -14,10 +14,11 @@ const UnitConverter = () => {
   { name: "⏰ Time", value: "time" }
 ];
 
-  const [input, setInput] = useState('');
-  const [from, setFrom] = useState(units['Length'][0]);
-  const [to, setTo] = useState(units['Length'][1]);
-  const [result, setResult] = useState('');
+ const [input, setInput] = useState('');
+const [category, setCategory] = useState('length'); 
+const [from, setFrom] = useState(units['Length'][0]);
+const [to, setTo] = useState(units['Length'][1]);
+const [result, setResult] = useState('');
 
   useEffect(() => {
     if (!input || isNaN(input)) {
