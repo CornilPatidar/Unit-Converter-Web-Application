@@ -1,11 +1,11 @@
-# Unit Master – Unit Converter Web Application
+# Unit Master –🌐Unit Converter Web Application
 
 **Unit Master** is a responsive and user-friendly unit converter built using React and Tailwind CSS. It enables users to convert values across multiple categories including length, weight, temperature, time, currency, and more.
 
-## Live Demo
+## 🔗Live Demo
 https://unit-converter-ten-delta.vercel.app/
 
-## Features
+## ✨Features
 
 - Real-time input-based conversions without requiring a submit action
 - Clean and responsive UI compatible with both desktop and mobile
@@ -13,14 +13,14 @@ https://unit-converter-ten-delta.vercel.app/
 - Tailwind CSS for consistent design and quick styling
 - Lightweight and fast performance
 
-## Technologies Used
+## 🧰Technologies Used
 
 - React
 - Tailwind CSS
 - PNPM
 - Vercel (Deployment)
 
-## Installation
+## 🚀Installation
 
 ```bash
 git clone https://github.com/cornil-devil/unit-converter.git
@@ -29,7 +29,7 @@ pnpm install
 pnpm start
 ```
 
-## Build
+## 🛠️Build
 
 To create an optimized production build:
 
@@ -37,10 +37,10 @@ To create an optimized production build:
 pnpm run build
 ```
 
-## Live Demo
+## 🔗Live Demo
 https://unit-converter-ten-delta.vercel.app/
 
-## Author
+## 🛡️Author
 
 Cornil Patidar  
 [GitHub – cornil-devil](https://github.com/cornil-devil)
