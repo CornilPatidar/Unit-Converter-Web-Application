@@ -2,6 +2,9 @@
 
 **Unit Master** is a responsive and user-friendly unit converter built using React and Tailwind CSS. It enables users to convert values across multiple categories including length, weight, temperature, time, currency, and more.
 
+## Live Demo
+https://unit-converter-ten-delta.vercel.app/
+
 ## Features
 
 - Real-time input-based conversions without requiring a submit action
@@ -35,8 +38,6 @@ pnpm run build
 ```
 
 ## Live Demo
-
-[View the deployed application](https://unit-master.vercel.app)  
 https://unit-converter-ten-delta.vercel.app/
 
 ## Author
